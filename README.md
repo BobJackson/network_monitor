@@ -305,3 +305,24 @@ deactivate
 所以在requirements.txt中添加了jaraco.text,
 重新安装依赖后，重新打包就可以了。
 ````
+
+````
+Library not loaded: @rpath/libffi.8.dylib
+
+验证 libffi 安装位置
+````
+
+````bash
+sudo find /usr/local -name "libffi.8.dylib"
+sudo find /opt -name "libffi.8.dylib" 
+````
+
+````text
+## 具体的路径
+/opt/homebrew/Cellar/libffi/3.4.7/lib/libffi.8.dylib
+````
+
+````bash
+sudo ln -s /opt/homebrew/Cellar/libffi/3.4.7/lib/libffi.8.dylib /usr/local/lib/libffi.8.dylib
+sudo update_dyld_shared_cache
+````
